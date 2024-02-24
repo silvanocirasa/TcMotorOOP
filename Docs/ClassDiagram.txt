@@ -2,105 +2,110 @@
 
 
 class Motor {
-  -deviceAdress: word
-  -speedActual: real
-  -torqueActual: real
-  -currentActual: real
-  -speedSetpoint: real
-  -torqueSetpoint: real
-  -powerStatus: bool
-  -errorStatus: word
+  -wDeviceAddress : word
+  -rSpeedActual : real
+  -rTorqueActual : real
+  -rCurrentActual : real
+  -rPositionActual : real
+  -rSpeedSetpoint : real
+  -rTorqueSetpoint : real
+  -rMotorTemperature : Thermostat.getTemperature
+  -bPowerStatus : bool
+  -wErrorStatus : word
   <<Constructor>>
-  +deviceAdress: word
+  +wDeviceAddress : word
   
-  +start(): bool
-  +stop(): bool
-  +getPowerStatus(): bool
-  +getSpeedActual(): real
-  +getTorqueActual(): real
-  +getCurrentActual(): real
-  +getErrorStatus(): word
-  +setSpeedSetpoint(): bool
-  +setTorqueSetpoint(): bool
+  +start() : bool
+  +stop() : bool
+  +getPowerStatus() : bool
+  +getSpeedActual() : real
+  +getTorqueActual() : real
+  +getPositionActual() : real
+  +getTemperature() : real
+  +getCurrentActual() : real
+  +getErrorStatus() : word
+  +setSpeedSetpoint() : bool
+  +setTorqueSetpoint() : bool
 }
 
 together {
 class HMI {
-  -deviceAddress: word
-  -motorAddress: word
-  -motorPower: bool
-  -motorOvercurrent: bool
-  -motorTemperature: real
-  -motorSpeed: real
-  -motorPosition: real
+  -wDeviceAddress : word
+  -wMotorAddress : word
+  -bMotorPower : Motor.getPowerStatus
+  -bMotorOvercurrent : Motor.getOvercurrentStatus
+  -rMotorTemperature : Motor.getTemperature
+  -rMotorSpeed : Motor.getSpeedActual
+  -rMotorPosition : Motor.getPositionActual
+  -rMotorTorque : Motor.getTorqueActual
   <<Constructor>>
-  +deviceAddress: word
+  +deviceAddress : word
   
-  +displayValues(): void
-  +writeValuesToDevice(): bool
+  +displayValues() : void
+  +writeValuesToDevice() : bool
 }
 
 class MotorProtection {
-  -inputAddress: bit
-  -overcurrentStatus: bool
+  -xInputAddress : bit
+  -bOvercurrentStatus : bool
   <<Constructor>>
-  +inputAdress: bit
+  +xInputAdress : bit
   
-  +getOvercurrentStatus(): bool
+  +getOvercurrentStatus() : bool
   
   }
 }
 
 
 class Encoder {
-  -deviceAdress: word
-  -positionActual: int
-  -speedActual: int
+  -wDeviceAddress : word
+  -iPositionActual : int
+  -iSpeedActual : int
   <<Constructor>>
-  +deviceAdress: word
+  +wDeviceAdress : word
   
-  +getSpeed(): real
-  +getPosition(): real
+  +getSpeed() : real
+  +getPosition() : real
 }
 
 class Fan {
-  -inputAddress: bit
-  -powerStatus: bool
+  -xOutputAddress: bit
+  -bPowerStatus: bool
   <<Constructor>>
-  +inputAddress: bit
+  +xOutputAddress: bit
   
   +powerOn(): bool
   +powerOff(): bool
+  +getPowerStatus(): bool
 }
 
 together {
   class CoolingWaterValve {
-  -outputAdress: word
-  -positionSetpoint : int
-  -temperatureSetpoint: real
-  -temperatureActual : Thermostat.getTemperature
+  -wOutputAddress: word
+  -iPositionSetpoint : int
+  -rTemperatureSetpoint: real
+  -rTemperatureActual : Thermostat.getTemperature
   <<Constructor>>
-  +outputAdress
-  +temperatureSetpoint
-  +temperatureActual
+  +wOutputAdress : word
+  +rTemperatureSetpoint : real
+  +rTemperatureActual : real
   
-  +setPosition(): real
-  +unscaleSetPosition(): int
+  +setPosition() : real
   }
   
   class Thermostat {
-    -inputAdress: word
-    -scaleMax: real
-    -scaleMin: real
-    -temperatureAnalogValue: int
-    -temperatureScaledValue: scaleTemperature
+    -wInputAdress : word
+    -rScaleMax : real
+    -rScaleMin : real
+    -iTemperatureAnalogValue : int
+    -rTemperatureScaledValue : real
     <<Constructor>>
-    +inputAdress: word
-    +scaleMax: real
-    +scaleMin: real
+    +inputAdress : word
+    +scaleMax : real
+    +scaleMin : real
     
-    +scaleTemperature(): real
-    +getTemperature(): real
+    +scaleTemperature() : real
+    +getTemperature() : real
   }
 }
 
