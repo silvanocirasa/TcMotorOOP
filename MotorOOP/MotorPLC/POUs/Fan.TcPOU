@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Fan" Id="{95480810-6c45-406d-a0b3-81d20a535b10}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Fan
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	xOutputAddress AT %I* : BIT;
+	bPowerStatus : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{4833a7f0-075c-4b92-aeed-a732432b88a7}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="powerOff" Id="{a3845553-ff17-4947-b43e-e8b2f09ad26f}">
+      <Declaration><![CDATA[METHOD powerOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="powerOn" Id="{28b2fa98-3340-4b57-8e91-5ef09854043c}">
+      <Declaration><![CDATA[METHOD powerOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="powerStatus" Id="{e4b16a19-1d7c-4798-ba7c-cc208ec70e8d}">
+      <Declaration><![CDATA[PROPERTY PUBLIC powerStatus : BOOL]]></Declaration>
+      <Get Name="Get" Id="{bf8b66fa-7660-4047-a96f-836253c43622}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[powerStatus := bPowerStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="Fan">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Fan.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="Fan.powerOff">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Fan.powerOn">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Fan.powerStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Motor" Id="{9e201c52-51a5-4466-a32f-9add5cad1d22}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Motor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	wDeviceAddress : WORD;
+	rSpeedActual : REAL;
+	rTorqueActual: REAL;
+	rCurrentActual : REAL;
+	rSpeedSetpoint : REAL;
+	rTorqueSetpoint : REAL;
+	bPowerStatus : BOOL;
+	wErrorStatus : WORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="currentActual" Id="{701a1092-a4e5-492f-bd19-0634763c5c80}">
+      <Declaration><![CDATA[PROPERTY PUBLIC currentActual : REAL]]></Declaration>
+      <Get Name="Get" Id="{c4383f64-d485-43a2-8306-9afc637da0ab}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[currentActual := rCurrentActual;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="errorStatus" Id="{e3900296-98d3-4e55-82fb-8730b9dcfdbd}">
+      <Declaration><![CDATA[PROPERTY PUBLIC errorStatus : WORD]]></Declaration>
+      <Get Name="Get" Id="{10296193-d52c-4171-9ff8-73751dab9d1b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[errorStatus := wErrorStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{8492f597-30a8-4e60-bad6-32c194051611}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="powerStatus" Id="{871ea45a-1a3c-4dad-8f01-1ccb0a84c3af}">
+      <Declaration><![CDATA[PROPERTY PUBLIC powerStatus : BOOL]]></Declaration>
+      <Get Name="Get" Id="{55aefbc5-50ff-4152-9691-a098436216ff}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[powerStatus := bPowerStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="setSpeedSetpoint" Id="{8ff61fd8-1855-4e7d-9484-bd5d274d55cb}">
+      <Declaration><![CDATA[METHOD PUBLIC setSpeedSetpoint : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setTorqueSetpoint" Id="{7c9d246f-b088-41e7-bd54-9eb802ad7907}">
+      <Declaration><![CDATA[METHOD PUBLIC setTorqueSetpoint : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="speedActual" Id="{ae7bd87f-c844-4ac9-9ef2-13638a6e2282}">
+      <Declaration><![CDATA[PROPERTY PUBLIC speedActual : REAL]]></Declaration>
+      <Get Name="Get" Id="{6c1d829d-a8ae-4c9b-9edf-463187e727a0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[speedActual := rSpeedActual;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="start" Id="{decf84df-c562-4530-8600-dd47fe5d0e03}">
+      <Declaration><![CDATA[METHOD start : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="stop" Id="{8be7300a-91cb-4938-a75f-8a2aef468905}">
+      <Declaration><![CDATA[METHOD stop : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="torqueActual" Id="{c52aedf7-edde-4e34-8d7d-b672f91bce09}">
+      <Declaration><![CDATA[PROPERTY PUBLIC torqueActual : REAL]]></Declaration>
+      <Get Name="Get" Id="{806f4ae0-04f0-4883-a618-5835db72cf62}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[torqueActual := rTorqueActual;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="Motor">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.currentActual.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.errorStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.powerStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.setSpeedSetpoint">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.setTorqueSetpoint">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.speedActual.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.start">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.stop">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Motor.torqueActual.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

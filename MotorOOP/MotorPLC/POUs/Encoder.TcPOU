@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Encoder" Id="{85234f50-7c39-4776-ac04-f3a6395be5ff}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Encoder
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	wDeviceAddress : WORD;
+	iPositionActual : INT;
+	iSpeedActual : INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{f536c7cb-8993-48b6-a9d5-440984451fb5}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="positionActual" Id="{24150512-b388-4902-8feb-3d2276216947}">
+      <Declaration><![CDATA[PROPERTY PUBLIC positionActual : INT]]></Declaration>
+      <Get Name="Get" Id="{2a27a6fa-dd14-4fc1-90c4-376b827dd1f0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[positionActual := iPositionActual;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="speedActual" Id="{6618547a-e072-4256-b1ed-ecf77e465e0f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC speedActual : INT]]></Declaration>
+      <Get Name="Get" Id="{916b8fcf-b1d1-4ef1-98fc-6532e75ac4de}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[speedActual := iSpeedActual;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="Encoder">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Encoder.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="Encoder.positionActual.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Encoder.speedActual.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

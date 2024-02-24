@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Thermostat" Id="{b2747955-fbbb-4ba2-b308-d456b12914c6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Thermostat
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	wInputAddress AT %I* : WORD;
+	rScaleMax : REAL;
+	rScaleMin : REAL;
+	iTemperatureAnalogValue : INT;
+	rTemperatureScaledValue : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{5f7a32b8-7fa6-441f-a003-be979df5ffa4}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="scaleTemperature" Id="{2ac7f04b-b036-498d-aa7d-5764fb1b441e}">
+      <Declaration><![CDATA[METHOD PRIVATE scaleTemperature : REAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="temperature" Id="{08d80838-4a9e-468d-b957-bb1630d6392a}">
+      <Declaration><![CDATA[PROPERTY PUBLIC temperature : REAL]]></Declaration>
+      <Get Name="Get" Id="{561e8b08-3d1f-4449-b269-db917a5ffd37}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[temperature := rTemperatureScaledValue;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="Thermostat">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Thermostat.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="Thermostat.scaleTemperature">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Thermostat.temperature.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

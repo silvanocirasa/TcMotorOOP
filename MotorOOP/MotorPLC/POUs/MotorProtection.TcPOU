@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MotorProtection" Id="{e46a7c32-9a2e-4c40-a832-d9bb44fbf82d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MotorProtection
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	xInputAddress AT %I* : BIT;
+	bOvercurrentStatus : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{ceb897a8-8b62-4dfb-9e7e-686da1b4332b}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="overcurrentStatus" Id="{fd63a1f7-1f8a-46e0-9418-04316c5a36c2}">
+      <Declaration><![CDATA[PROPERTY PUBLIC overcurrentStatus : BOOL]]></Declaration>
+      <Get Name="Get" Id="{d8aa0b07-2a7d-45c2-86b7-2fb56ee8f90e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[overcurrentStatus := bOvercurrentStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="MotorProtection">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="MotorProtection.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="MotorProtection.overcurrentStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
