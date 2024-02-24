@@ -1,0 +1,115 @@
+@startuml
+
+
+class Motor {
+  -deviceAdress: word
+  -speedActual: real
+  -torqueActual: real
+  -currentActual: real
+  -speedSetpoint: real
+  -torqueSetpoint: real
+  -powerStatus: bool
+  -errorStatus: word
+  <<Constructor>>
+  +deviceAdress: word
+  
+  +start(): bool
+  +stop(): bool
+  +getPowerStatus(): bool
+  +getSpeedActual(): real
+  +getTorqueActual(): real
+  +getCurrentActual(): real
+  +getErrorStatus(): word
+  +setSpeedSetpoint(): bool
+  +setTorqueSetpoint(): bool
+}
+
+together {
+class HMI {
+  -deviceAddress: word
+  -motorAddress: word
+  -motorPower: bool
+  -motorOvercurrent: bool
+  -motorTemperature: real
+  -motorSpeed: real
+  -motorPosition: real
+  <<Constructor>>
+  +deviceAddress: word
+  
+  +displayValues(): void
+  +writeValuesToDevice(): bool
+}
+
+class MotorProtection {
+  -inputAddress: bit
+  -overcurrentStatus: bool
+  <<Constructor>>
+  +inputAdress: bit
+  
+  +getOvercurrentStatus(): bool
+  
+  }
+}
+
+
+class Encoder {
+  -deviceAdress: word
+  -positionActual: int
+  -speedActual: int
+  <<Constructor>>
+  +deviceAdress: word
+  
+  +getSpeed(): real
+  +getPosition(): real
+}
+
+class Fan {
+  -inputAddress: bit
+  -powerStatus: bool
+  <<Constructor>>
+  +inputAddress: bit
+  
+  +powerOn(): bool
+  +powerOff(): bool
+}
+
+together {
+  class CoolingWaterValve {
+  -outputAdress: word
+  -positionSetpoint : int
+  -temperatureSetpoint: real
+  -temperatureActual : Thermostat.getTemperature
+  <<Constructor>>
+  +outputAdress
+  +temperatureSetpoint
+  +temperatureActual
+  
+  +setPosition(): real
+  +unscaleSetPosition(): int
+  }
+  
+  class Thermostat {
+    -inputAdress: word
+    -scaleMax: real
+    -scaleMin: real
+    -temperatureAnalogValue: int
+    -temperatureScaledValue: scaleTemperature
+    <<Constructor>>
+    +inputAdress: word
+    +scaleMax: real
+    +scaleMin: real
+    
+    +scaleTemperature(): real
+    +getTemperature(): real
+  }
+}
+
+Motor "0..*" -- "1..*" HMI
+Motor "1" <-- "1" MotorProtection
+Motor "1" *-- "0..2" Encoder
+Motor "1" *-- "0..1" Fan
+Motor "1" -- "0..1" CoolingWaterValve
+Motor "1" *-- "1" Thermostat
+CoolingWaterValve "1" -- "1" Thermostat
+
+@enduml
