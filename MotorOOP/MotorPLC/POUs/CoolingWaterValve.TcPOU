@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="CoolingWaterValve" Id="{556b668b-7470-45dd-b3a0-c5edf5b8950a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CoolingWaterValve
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	wOutputAddress AT %Q*: WORD;
+	iPositionSetpoint : INT;
+	rTemperatureSetpoint : REAL;
+	rTemperatureActual : REAL := Thermostat.temperature;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{7ba04b59-689f-428a-ac37-2a0a033f34b9}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setPosition" Id="{34724af9-c9d6-41d5-9b85-25ffa97ee56e}">
+      <Declaration><![CDATA[METHOD setPosition : REAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="unscaleSetPosition" Id="{e4874983-3223-40cb-9048-1b3f09baa666}">
+      <Declaration><![CDATA[METHOD unscaleSetPosition : INT
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="CoolingWaterValve">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="CoolingWaterValve.FB_init">
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="CoolingWaterValve.setPosition">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="CoolingWaterValve.unscaleSetPosition">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
